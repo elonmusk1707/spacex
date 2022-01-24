@@ -60,21 +60,25 @@ set tcp1 [$ns create-connection TCP/Sack1 $nodes(is) TCPSink/Sack1 $nodes(lp) 0]
 set ftp1 [[set tcp1] attach-app FTP]
 $ns at 0.8 "[set ftp1] start"
 }
-proc stop {} {
-global nodes opt tf
-set wrap $opt(wrap)
-set sid [$nodes($opt(srcTrace)) id]
-set did [$nodes($opt(dstTrace)) id]
-set a "Mlab6.tr"
-
-set GETRC "../bin/getrc"
-set RAW2XG "../bin/raw2xg"
-exec $GETRC -s $sid -d $did -f 0 Mlab6.tr | \
-$RAW2XG -s 0.01 -m $wrap -r > plot6.xgr
-exec $GETRC -s $did -d $sid -f 0 Mlab6.tr | \
-$RAW2XG -a -s 0.01 -m $wrap >> plot6.xgr
-exec xgraph -x time -y packets plot6.xgr &
-exit 0
-}
+proc  stop {} { 
+		  global nodes opt tf 
+	 set wrap $opt(wrap) 
+		  set sid [$nodes($opt(srcTrace)) id] 
+		  set did [$nodes($opt(dstTrace)) id] 
+		  
+		  set a "Mlab5.tr" 
+		  
+		  set GETRC "/root/ns-allinone-2.35/ns-2.35/bin/getrc" 
+		  set RAW2XG "/root/ns-allinone-2.35/ns-2.35/bin/raw2xg" 
+		  
+		  exec $GETRC -s $sid -d $did -f 0 Mlab5.tr | \
+		  $RAW2XG -s 0.01 -m $wrap -r > plot.xgr 
+		  
+		  exec $GETRC -s $did -d $sid -f 0 Mlab5.tr | \
+		  $RAW2XG -a -s 0.01 -m $wrap >> plot.xgr 
+		  
+		  exec xgraph -x time -y packets plot.xgr &
+		  exit 0
+		  } 
 $ns at $stop "stop"
 $ns run
