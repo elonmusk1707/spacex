@@ -73,8 +73,8 @@ proc  stop {} {
 		  
 		  set a "Mlab5.tr" 
 		  
-		  set GETRC "/var/cn/ns-allinone-2.35/ns-2.35/bin/getrc" 
-		  set RAW2XG "/var/cn/ns-allinone-2.35/ns-2.35/bin/raw2xg" 
+		  set GETRC "/root/ns-allinone-2.35/ns-2.35/bin/getrc" 
+		  set RAW2XG "/root/ns-allinone-2.35/ns-2.35/bin/raw2xg" 
 		  
 		  exec $GETRC -s $sid -d $did -f 0 Mlab5.tr | \
 		  $RAW2XG -s 0.01 -m $wrap -r > plot.xgr 
